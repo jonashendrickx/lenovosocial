@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory 
+        android:title="@string/network"
+        android:key="category_network">
+        <CheckBoxPreference android:title="@string/can_download_images" android:defaultValue="true" android:key="pref_can_download_images"/>
+        <CheckBoxPreference android:dependency="pref_can_download_images" android:title="@string/wifi_only" android:key="pref_can_download_wifi_only" android:defaultValue="true"/>    
+            
+    </PreferenceCategory>
+    
+</PreferenceScreen>
