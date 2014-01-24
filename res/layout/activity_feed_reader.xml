@@ -8,9 +8,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".FeedReaderActivity" >
+
     <ListView
         android:id="@+id/listViewEventReader"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:background="@color/lenovo_darkred"
+        android:drawSelectorOnTop="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:overScrollMode="never" >
+
     </ListView>
 </RelativeLayout>
