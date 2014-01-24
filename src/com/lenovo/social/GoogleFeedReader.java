@@ -57,9 +57,6 @@ public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEv
 						gregorianCalendar.setTime(date);
 						event.setTime((GregorianCalendar) gregorianCalendar);
 						break;
-					} else if ("img".equals(parser.getName())) {
-						event.setImageURL(parser.nextText());
-						break;
 					} else if ("event_url".equals(parser.getName())) {
 						event.setEventURL(parser.nextText());
 						break;

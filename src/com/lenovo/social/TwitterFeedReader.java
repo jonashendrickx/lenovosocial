@@ -51,9 +51,6 @@ public class TwitterFeedReader extends AsyncTask<String, Void, ArrayList<Twitter
 						gregorianCalendar.setTime(date);
 						event.setTime((GregorianCalendar) gregorianCalendar);
 						break;
-					} else if ("img".equals(parser.getName())) {
-						event.setImageURL(parser.nextText());
-						break;
 					} else if ("hashtags".equals(parser.getName())) {
 						event.setHashTags(parser.nextText());
 						break;
