@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="main_activity_array">
+		<item >Google Plus/Hangout Events</item>
+		<item >Twitter Events</item>
+	</string-array>    
+</resources>

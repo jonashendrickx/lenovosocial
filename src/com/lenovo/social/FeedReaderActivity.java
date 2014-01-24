@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
@@ -19,40 +20,88 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 
-public class GoogleReaderActivity extends Activity {
-	private ListView listViewGoogleEvents;
+public class FeedReaderActivity extends Activity {
+	private ListView listViewEvents;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_google_reader);
+		setContentView(R.layout.activity_feed_reader);
 		setupActionBar();
 		
-		listViewGoogleEvents = (ListView)findViewById(R.id.listViewGoogleReader);
-		FeedReader reader = new FeedReader("http://lenovojonas.podserver.info/hangouts.xml");
-		reader.execute();
-		ArrayList<HangoutEvent> hangoutEvents = null;
+		listViewEvents = (ListView)findViewById(R.id.listViewEventReader);
+		GoogleFeedReader reader1 = new GoogleFeedReader();
+		TwitterFeedReader reader2 = new TwitterFeedReader();
 		try {
-			hangoutEvents = reader.get();
-		} catch (InterruptedException ee) {
-			Log.w("LenovoHangoutException", "InterruptedException while retrieving XML");
-		} catch (ExecutionException ee) {
-			Log.w("LenovoHangoutException", "ExecutionException while retrieving XML");
+			reader1.execute();
+			reader2.execute();
+		} catch (IllegalStateException exception) {
+			Log.e("", exception.getMessage());
 		}
-		HangoutsArrayAdapter hangoutsArrayAdapter = new HangoutsArrayAdapter(this, hangoutEvents);
-		listViewGoogleEvents.setAdapter(hangoutsArrayAdapter);
-		listViewGoogleEvents.setOnItemClickListener(new OnItemClickListener() {
+		ArrayList<Event> hangoutEvents = new ArrayList<Event>();
+		try {
+			hangoutEvents.addAll(reader1.get());
+			hangoutEvents.addAll(reader2.get());
+			
+		} catch (InterruptedException ee) {
+		} catch (ExecutionException ee) {
+		}
+	
+		EventsArrayAdapter adapter = new EventsArrayAdapter(this, hangoutEvents);
+		listViewEvents.setAdapter(adapter);
+		listViewEvents.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> l, View v, int position,
 					long arg3) {
-				HangoutEvent event = (HangoutEvent) l.getItemAtPosition(position);
-				try {
-					Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getURL()));
-					startActivity(myIntent);
-				} catch (ActivityNotFoundException e) {
-					e.printStackTrace();
+				if (l.getItemAtPosition(position) instanceof GoogleEvent) {
+					GoogleEvent event = (GoogleEvent) l.getItemAtPosition(position);
+					try {
+						Intent intent;
+						if (!event.getRecordingURL().equals("") && event.getRecordingURL() != null) {
+							intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getRecordingURL()));
+						} else {
+							intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getEventURL()));
+						}
+						startActivity(intent);
+					} catch (ActivityNotFoundException e) {
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Server.TWITTER_URL));
+						startActivity(intent);
+					} catch (ActivityNotFoundException e) {
+						
+					}
 				}
 			}
+		});
+		listViewEvents.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> l, View v, int position, long arg3) {
+				if (l.getItemAtPosition(position) instanceof GoogleEvent) {
+				GoogleEvent event = (GoogleEvent) l.getItemAtPosition(position);
+				try {
+					Intent intent = null;
+					boolean done = false;
+					if (!event.getEventURL().equals("") && event.getEventURL() != null) {
+						intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getEventURL()));
+						startActivity(intent);
+						done = true;
+					} else if (!done && !event.getRecordingURL().equals("") && event.getRecordingURL() != null) {
+						intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getEventURL()));
+						startActivity(intent);
+					}
+				} catch (ActivityNotFoundException e) {
+				}
+				} else {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Server.TWITTER_URL));
+					startActivity(intent);
+				}
+				return true;
+			}
+			
 		});
 	}
 
@@ -69,8 +118,8 @@ public class GoogleReaderActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.google_reader, menu);
-		return true;
+		getMenuInflater().inflate(R.menu.main, menu);
+		return false;
 	}
 
 	@Override

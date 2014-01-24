@@ -11,36 +11,30 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import android.util.Log;
 
-public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEvent>> {
+public class TwitterFeedReader extends AsyncTask<String, Void, ArrayList<TwitterEvent>> {
 	@SuppressLint("SimpleDateFormat") @Override
-	protected ArrayList<GoogleEvent> doInBackground(String... params) {
-		ArrayList<GoogleEvent> list = new ArrayList<GoogleEvent>(0);
+	protected ArrayList<TwitterEvent> doInBackground(String... params) {
+		ArrayList<TwitterEvent> list = new ArrayList<TwitterEvent>(0);
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
 			XmlPullParser parser = factory.newPullParser();
-			URL url = new URL(Server.GOOGLE_FEED_URL);
+			URL url = new URL(Server.TWITTER_FEED_URL);
 			InputStream inputStream = url.openStream();
 			parser.setInput(inputStream, null);
 			int eventType = parser.getEventType();
-			GoogleEvent event = null;
+			TwitterEvent event = null;
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				switch (eventType) {
-				case XmlPullParser.START_DOCUMENT:
-					list = new ArrayList<GoogleEvent>();
-					break;
 				case XmlPullParser.START_TAG:
 					if ("event".equals(parser.getName())) {
-						event = new GoogleEvent();
+						event = new TwitterEvent();
 						break;
 					} else if ("name".equals(parser.getName())) {
 						event.setName(parser.nextText());
@@ -60,11 +54,10 @@ public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEv
 					} else if ("img".equals(parser.getName())) {
 						event.setImageURL(parser.nextText());
 						break;
-					} else if ("event_url".equals(parser.getName())) {
-						event.setEventURL(parser.nextText());
+					} else if ("hashtags".equals(parser.getName())) {
+						event.setHashTags(parser.nextText());
 						break;
-					} else if ("recording_url".equals(parser.getName())) {
-						event.setRecordingURL(parser.nextText());
+					} else {
 						break;
 					}
 				case XmlPullParser.END_TAG:
@@ -76,7 +69,7 @@ public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEv
 				eventType = parser.next();
 			}
 		} catch (MalformedURLException e) {
-			return new ArrayList<GoogleEvent>(0);
+			return new ArrayList<TwitterEvent>(0);
 		} catch (XmlPullParserException e) {
 			list.trimToSize();
 			return list;

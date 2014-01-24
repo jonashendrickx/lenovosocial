@@ -2,7 +2,7 @@ package com.lenovo.social;
 
 import java.util.GregorianCalendar;
 
-public class Event {
+public class Event implements Comparable<Event> {
 	protected String image_url = "";
 	protected String name = "";
 	protected GregorianCalendar time = null;
@@ -29,5 +29,10 @@ public class Event {
 	
 	public GregorianCalendar getTime() {
 		return time;
+	}
+
+	@Override
+	public int compareTo(Event another) {
+		return -getTime().compareTo(another.getTime());
 	}
 }

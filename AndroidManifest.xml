@@ -20,22 +20,13 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.lenovo.social.TwitterReaderActivity"
-            android:label="@string/title_activity_twitter_reader"
-            android:parentActivityName="com.lenovo.social.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lenovo.social.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.lenovo.social.GoogleReaderActivity"
-            android:label="@string/title_activity_google_reader"
-            android:parentActivityName="com.lenovo.social.MainActivity" >
+            android:name="com.lenovo.social.FeedReaderActivity"
+            android:label="@string/title_activity_feed_reader"
+			android:parentActivityName="com.lenovo.social.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lenovo.social.MainActivity" />

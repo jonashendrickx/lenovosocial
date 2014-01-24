@@ -1,15 +1,11 @@
 package com.lenovo.social;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.lenovo.social.R;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,22 +13,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HangoutsArrayAdapter extends ArrayAdapter<HangoutEvent> {
+public class EventsArrayAdapter extends ArrayAdapter<Event> {
 	private final Activity activity;
-	private final ArrayList<HangoutEvent> hangoutEvents;
+	private final ArrayList<Event> events;
 
 	static class ViewHolder {
 		public ImageView imageViewPicture;
 		public TextView textViewName;
+		public TextView textViewHashtags;
 		public TextView textViewTime;
 	}
 
-	public HangoutsArrayAdapter(Activity activity, ArrayList<HangoutEvent> hangoutEvents) {
-		super(activity, R.layout.google_reader_item, hangoutEvents);
+	public EventsArrayAdapter(Activity activity, ArrayList<Event> events) {
+		super(activity, R.layout.google_item, events);
 		this.activity = activity;
-		this.hangoutEvents = hangoutEvents;
-		
-		
+		Collections.sort(events);
+		this.events = events;
+
+
 	}
 
 	@Override
@@ -40,31 +38,48 @@ public class HangoutsArrayAdapter extends ArrayAdapter<HangoutEvent> {
 		View rowView = convertView;
 		java.text.DateFormat dateFormat = android.text.format.DateFormat.getMediumDateFormat(activity.getApplicationContext());
 		java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(activity.getApplicationContext());
+		if (events.get(position) instanceof GoogleEvent) {
 			if (rowView == null) {
 				LayoutInflater inflater = activity.getLayoutInflater();
-				rowView = inflater.inflate(R.layout.google_reader_item, null);
+				rowView = inflater.inflate(R.layout.google_item, null);
 				ViewHolder viewHolder = new ViewHolder();
 				viewHolder.imageViewPicture = (ImageView) rowView.findViewById(R.id.imageViewPicture);
 				viewHolder.textViewName = (TextView) rowView.findViewById(R.id.textViewName);
 				viewHolder.textViewTime = (TextView) rowView.findViewById(R.id.textViewTime);
 				rowView.setTag(viewHolder);
 			}
-
 			ViewHolder holder = (ViewHolder) rowView.getTag();
-			String hangoutEventName = hangoutEvents.get(position).getName();
-			String hangoutEventTime = dateFormat.format(hangoutEvents.get(position).getTime().getTime());
+			String hangoutEventName = events.get(position).getName();
+			String hangoutEventTime = dateFormat.format(events.get(position).getTime().getTime());
 			holder.textViewName.setText(hangoutEventName);
-			if (System.currentTimeMillis() < hangoutEvents.get(position).getTime().getTimeInMillis()) {
-				hangoutEventTime += " " + timeFormat.format(hangoutEvents.get(position).getTime().getTime());
+			if (System.currentTimeMillis() < events.get(position).getTime().getTimeInMillis()) {
+				hangoutEventTime += " " + timeFormat.format(events.get(position).getTime().getTime());
 			}
 			holder.textViewTime.setText(hangoutEventTime);
-			Helper helper = new Helper(activity);
-			if (helper.canDownload(activity)){
-				if (!hangoutEvents.get(position).getImageURL().equals("") && hangoutEvents.get(position).getImageURL() != null) {
-					String url = "http://lenovojonas.podserver.info/" + hangoutEvents.get(position).getImageURL();
-					new BitmapDownloaderTask((ImageView)rowView.findViewById(R.id.imageViewPicture)).execute(url);
-				}
+		} else if (events.get(position) instanceof TwitterEvent) {
+			if (rowView == null) {
+				LayoutInflater inflater = activity.getLayoutInflater();
+				rowView = inflater.inflate(R.layout.twitter_item, null);
+				ViewHolder viewHolder = new ViewHolder();
+				viewHolder.imageViewPicture = (ImageView) rowView.findViewById(R.id.imageViewPicture);
+				viewHolder.textViewName = (TextView) rowView.findViewById(R.id.textViewName);
+				viewHolder.textViewHashtags = (TextView) rowView.findViewById(R.id.textViewHashtags);
+				viewHolder.textViewTime = (TextView) rowView.findViewById(R.id.textViewTime);
+				rowView.setTag(viewHolder);
 			}
+
+			ViewHolder holder = (ViewHolder) rowView.getTag();
+			TwitterEvent tevt = (TwitterEvent)events.get(position);
+			String hangoutEventName = events.get(position).getName();
+			String hangoutEventHashtag = tevt.getHashTags();
+			String hangoutEventTime = dateFormat.format(events.get(position).getTime().getTime());
+			holder.textViewName.setText(hangoutEventName);
+			holder.textViewHashtags.setText(hangoutEventHashtag);
+			if (System.currentTimeMillis() < events.get(position).getTime().getTimeInMillis()) {
+				hangoutEventTime += " " + timeFormat.format(events.get(position).getTime().getTime());
+			}
+			holder.textViewTime.setText(hangoutEventTime);
+		}
 		return rowView;
 	}
 }

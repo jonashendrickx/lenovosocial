@@ -1,20 +1,26 @@
 package com.lenovo.social;
 
-import java.util.GregorianCalendar;
-
-public class HangoutEvent extends Event{
+public class GoogleEvent extends Event{
 	private String event_url = "";
-	
+	private String recording_url = "";
 
-	public HangoutEvent() {
+	public GoogleEvent() {
 	}
 	
-	public void setEventURL(String url) {
+	public void setEventURL(String event_url) {
 		this.event_url = event_url;
 	}
 	
-	public String getURL() {
+	public void setRecordingURL(String recording_url) {
+		this.recording_url = recording_url;
+	}
+	
+	public String getEventURL() {
 		return event_url;
+	}
+	
+	public String getRecordingURL() {
+		return recording_url;
 	}
 	
 	public String toString() {

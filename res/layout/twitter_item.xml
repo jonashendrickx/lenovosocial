@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@drawable/google_listitem" >
+    android:background="@drawable/twitter_listitem" >
 
     <ImageView
         android:id="@+id/imageViewPicture"
@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:maxWidth="48dp"
         android:scaleType="fitXY"
-        android:src="@drawable/hangout_logo" />
+        android:src="@drawable/twitter_logo" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,6 +26,14 @@
             android:text="@+id/textViewName"
             android:textColor="@color/lenovo_white"
             android:textSize="24sp" >
+        </TextView>
+        <TextView
+            android:id="@+id/textViewHashtags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/textViewHashtags"
+            android:textColor="@color/lenovo_white"
+            android:textSize="16sp" >
         </TextView>
         <TextView
             android:id="@+id/textViewTime"
