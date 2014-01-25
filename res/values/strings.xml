@@ -4,5 +4,9 @@
     <string name="app_name">Lenovo Social</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_feed_reader">GoogleReaderActivity</string>
-	<string name="action_donate">Donate</string>
+    <string name="action_donate">Donate</string>
+    <string name="title_activity_giveaway">GiveawayActivity</string>
+    <string name="expiration_date">Expiration date:</string>
+    <string name="expired">Expired</string>
+    <string name="restrictions">Restrictions:</string>
 </resources>

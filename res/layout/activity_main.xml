@@ -21,4 +21,16 @@
         android:scaleType="fitXY"
         android:src="@drawable/calendar" />
 
+    <ImageButton
+        android:id="@+id/imageButtonGiveaways"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_below="@+id/imageButton1"
+        android:adjustViewBounds="true"
+        android:maxHeight="128dp"
+        android:maxWidth="128dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/giveaway" />
+
 </RelativeLayout>

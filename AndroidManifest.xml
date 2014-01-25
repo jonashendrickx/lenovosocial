@@ -7,8 +7,9 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,21 +18,31 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.lenovo.social.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.lenovo.social.FeedReaderActivity"
             android:label="@string/app_name"
-			android:parentActivityName="com.lenovo.social.MainActivity" >
+            android:parentActivityName="com.lenovo.social.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lenovo.social.MainActivity" />
         </activity>
-        <activity android:name="SettingsActivity"></activity>
+        <activity android:name="com.lenovo.social.SettingsActivity" >
+        </activity>
+        <activity
+            android:name="com.lenovo.social.GiveawayActivity"
+            android:label="@string/title_activity_giveaway"
+            android:parentActivityName="com.lenovo.social.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lenovo.social.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

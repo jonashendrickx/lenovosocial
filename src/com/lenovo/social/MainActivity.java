@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
         private ImageButton googleEventsButton;
+        private ImageButton giveawaysButton;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -39,6 +40,17 @@ public class MainActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						Intent myIntent = new Intent(getApplicationContext(), FeedReaderActivity.class);
+                        startActivity(myIntent);
+					}
+                	
+                });
+                
+                giveawaysButton = (ImageButton)findViewById(R.id.imageButtonGiveaways);
+                giveawaysButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Intent myIntent = new Intent(getApplicationContext(), GiveawayActivity.class);
                         startActivity(myIntent);
 					}
                 	
