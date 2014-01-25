@@ -10,9 +10,6 @@
         android:id="@+id/imageViewPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="48dp"
-        android:scaleType="fitXY"
         android:src="@drawable/hangout_logo" />
 
     <LinearLayout
@@ -26,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@+id/textViewName"
             android:textColor="@color/lenovo_white"
-            android:textSize="24sp" >
+            android:textAppearance="?android:attr/textAppearanceMedium" >
         </TextView>
         <TextView
             android:id="@+id/textViewTime"
@@ -34,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@+id/textViewTime"
             android:textColor="@color/lenovo_white"
-            android:textSize="16sp" >
+            android:textAppearance="?android:attr/textAppearanceSmall" >
         </TextView>
     </LinearLayout>
 </LinearLayout>
