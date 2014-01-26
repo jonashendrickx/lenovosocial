@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Build;
 
 public class GiveawayActivity extends Activity {
@@ -34,6 +40,21 @@ public class GiveawayActivity extends Activity {
 		listviewGiveaways = (ListView)findViewById(R.id.listViewGiveaways);
 		GiveawayArrayAdapter adapter = new GiveawayArrayAdapter(this, R.id.listViewGiveaways, giveaways);
 		listviewGiveaways.setAdapter(adapter);
+		listviewGiveaways.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> l, View v, int position,
+					long arg3) {
+				Giveaway event = (Giveaway) l.getItemAtPosition(position);
+				try {
+					if (!event.getURL().equals("") && event.getURL() != null) {
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getURL()));
+						startActivity(intent);
+					}
+				} catch (ActivityNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -50,7 +71,7 @@ public class GiveawayActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.giveaway, menu);
-		return true;
+		return false;
 	}
 
 	@Override
