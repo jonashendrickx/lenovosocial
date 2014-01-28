@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
                 
-                googleEventsButton = (ImageButton)findViewById(R.id.imageButton1);
+                googleEventsButton = (ImageButton)findViewById(R.id.imageButtonSocialEvents);
                 googleEventsButton.setOnClickListener(new OnClickListener() {
 
 					@Override

@@ -14,12 +14,12 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int google_green=0x7f060005;
-        public static final int lenovo_black=0x7f060002;
+        public static final int black=0x7f060004;
+        public static final int google_green=0x7f060003;
         public static final int lenovo_darkred=0x7f060000;
-        public static final int lenovo_red=0x7f060003;
-        public static final int lenovo_white=0x7f060001;
-        public static final int twitter_blue=0x7f060004;
+        public static final int lenovo_red=0x7f060001;
+        public static final int twitter_blue=0x7f060002;
+        public static final int white=0x7f060005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -33,28 +33,31 @@ public final class R {
     }
     public static final class drawable {
         public static final int calendar=0x7f020000;
-        public static final int giveaway=0x7f020001;
-        public static final int google_listitem=0x7f020002;
-        public static final int hangout_logo=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int twitter_listitem=0x7f020005;
-        public static final int twitter_logo=0x7f020006;
+        public static final int giveaway_item=0x7f020001;
+        public static final int giveaway_listitem=0x7f020002;
+        public static final int giveaway_logo=0x7f020003;
+        public static final int google_listitem=0x7f020004;
+        public static final int hangout_item=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int twitter_item=0x7f020007;
+        public static final int twitter_listitem=0x7f020008;
     }
     public static final class id {
-        public static final int action_donate=0x7f0b000d;
-        public static final int action_settings=0x7f0b000c;
-        public static final int imageButton1=0x7f0b0002;
+        public static final int action_donate=0x7f0b000e;
+        public static final int action_settings=0x7f0b000d;
         public static final int imageButtonGiveaways=0x7f0b0003;
-        public static final int imageViewPicture=0x7f0b0009;
-        public static final int labelExpirationDate=0x7f0b0007;
-        public static final int labelRestrictions=0x7f0b0005;
+        public static final int imageButtonSocialEvents=0x7f0b0002;
+        public static final int imageViewGiveawayItem=0x7f0b0004;
+        public static final int imageViewPicture=0x7f0b000a;
+        public static final int labelExpirationDate=0x7f0b0008;
+        public static final int labelRestrictions=0x7f0b0006;
         public static final int listViewEventReader=0x7f0b0000;
         public static final int listViewGiveaways=0x7f0b0001;
-        public static final int textViewExpirationDate=0x7f0b0008;
-        public static final int textViewHashtags=0x7f0b000b;
-        public static final int textViewName=0x7f0b0004;
-        public static final int textViewRestrictions=0x7f0b0006;
-        public static final int textViewTime=0x7f0b000a;
+        public static final int textViewExpirationDate=0x7f0b0009;
+        public static final int textViewHashtags=0x7f0b000c;
+        public static final int textViewName=0x7f0b0005;
+        public static final int textViewRestrictions=0x7f0b0007;
+        public static final int textViewTime=0x7f0b000b;
     }
     public static final class layout {
         public static final int activity_feed_reader=0x7f030000;

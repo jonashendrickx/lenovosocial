@@ -1,66 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@drawable/giveaway_listitem"
+    android:padding="5dp" >
 
-    <TextView
-        android:id="@+id/textViewName"
+    <ImageView
+        android:id="@+id/imageViewGiveawayItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+id/textViewName"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/lenovo_white" >
+        android:src="@drawable/giveaway_item" />
 
-        </TextView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/labelRestrictions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="@string/restrictions"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/lenovo_white" />
-
-        <TextView
-            android:id="@+id/textViewRestrictions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/lenovo_white" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/labelExpirationDate"
+            android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="@string/expiration_date"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/lenovo_white" />
+            android:text="@+id/textViewName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/textViewExpirationDate"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/labelRestrictions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/restrictions"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textViewRestrictions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/expired"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/lenovo_white" />
+            android:orientation="horizontal" >
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/labelExpirationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/expiration_date"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textViewExpirationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/expired"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
