@@ -16,36 +16,31 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.util.Log;
 
-public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEvent>> {
-	@SuppressLint("SimpleDateFormat") @Override
-	protected ArrayList<GoogleEvent> doInBackground(String... params) {
-		ArrayList<GoogleEvent> list = new ArrayList<GoogleEvent>(0);
+public class ReleaseFeedReader extends AsyncTask<String, Void, ArrayList<Release>>{
+
+	@Override
+	protected ArrayList<Release> doInBackground(String... params) {
+		ArrayList<Release> list = new ArrayList<Release>(0);
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
 			XmlPullParser parser = factory.newPullParser();
-			URL url = new URL(Server.GOOGLE_FEED_URL);
+			URL url = new URL(Server.RELEASES_FEED_URL);
 			InputStream inputStream = url.openStream();
 			parser.setInput(inputStream, null);
 			int eventType = parser.getEventType();
-			GoogleEvent event = null;
+			Release release = null;
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				switch (eventType) {
-				case XmlPullParser.START_DOCUMENT:
-					list = new ArrayList<GoogleEvent>();
-					break;
 				case XmlPullParser.START_TAG:
-					if ("event".equals(parser.getName())) {
-						event = new GoogleEvent();
+					if ("release".equals(parser.getName())) {
+						release = new Release();
 						break;
-					} else if ("name".equals(parser.getName())) {
-						event.setName(parser.nextText());
-						break;
-					} else if ("time".equals(parser.getName())) {
-						DateFormat dateFormat = new SimpleDateFormat("d/M/yyyy H:m z");
+					} else if ("date".equals(parser.getName())) {
+						DateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
 						Date date = null;
 						try {
 							date = dateFormat.parse(parser.nextText());
@@ -54,25 +49,28 @@ public class GoogleFeedReader extends AsyncTask<String, Void, ArrayList<GoogleEv
 						}
 						Calendar gregorianCalendar = Calendar.getInstance();
 						gregorianCalendar.setTime(date);
-						event.setTime((GregorianCalendar) gregorianCalendar);
+						release.setDate((GregorianCalendar) gregorianCalendar);
 						break;
-					} else if ("event_url".equals(parser.getName())) {
-						event.setEventURL(parser.nextText());
+						} else if ("product".equals(parser.getName())) {
+						Product product = new Product();
+						product.setName(parser.nextText());
+						//product.setURL(parser.getAttributeValue(parser.getNamespace(), "url"));
+						//Log.e("", product.getURL());
+						release.addProduct(product);
 						break;
-					} else if ("recording_url".equals(parser.getName())) {
-						event.setRecordingURL(parser.nextText());
+					} else {
 						break;
 					}
 				case XmlPullParser.END_TAG:
-					if ("event".equals(parser.getName())) {
-						list.add(event);
+					if ("release".equals(parser.getName())) {
+						list.add(release);
 					}
 					break;
 				}
 				eventType = parser.next();
 			}
 		} catch (MalformedURLException e) {
-			return new ArrayList<GoogleEvent>(0);
+			return new ArrayList<Release>(0);
 		} catch (XmlPullParserException e) {
 			list.trimToSize();
 			return list;

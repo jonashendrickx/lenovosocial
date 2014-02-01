@@ -6,7 +6,7 @@
     android:background="@color/lenovo_darkred"
     android:orientation="vertical" >
 
-    <ListView
+    <ExpandableListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/lenovo_darkred"
     android:gravity="center"
-    android:orientation="vertical"
     android:padding="@dimen/padding_full"
     tools:context=".MainActivity" >
 
@@ -29,5 +28,4 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/releases"
         android:src="@drawable/release" />
-
 </LinearLayout>

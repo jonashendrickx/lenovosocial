@@ -7,7 +7,7 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/imageViewPicture"
+        android:id="@+id/imageViewGooglePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/hangout_item" />
@@ -18,7 +18,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/textViewGoogleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+id/textViewName"
@@ -26,7 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" >
         </TextView>
         <TextView
-            android:id="@+id/textViewTime"
+            android:id="@+id/textViewGoogleTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+id/textViewTime"

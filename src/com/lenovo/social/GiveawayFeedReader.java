@@ -52,7 +52,7 @@ public class GiveawayFeedReader extends AsyncTask<String, Void, ArrayList<Giveaw
 						} catch (ParseException e) {
 							return list;
 						}
-						Calendar gregorianCalendar = GregorianCalendar.getInstance();
+						Calendar gregorianCalendar = Calendar.getInstance();
 						gregorianCalendar.setTime(date);
 						giveaway.setExpirationDate((GregorianCalendar) gregorianCalendar);
 						break;

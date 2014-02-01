@@ -1,34 +1,20 @@
 package com.lenovo.social;
 
-import java.util.ArrayList;
-
-import com.lenovo.social.EventsArrayAdapter.ViewHolder;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
         private ImageButton googleEventsButton;
         private ImageButton giveawaysButton;
+        private ImageButton releasesButton;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -39,18 +25,29 @@ public class MainActivity extends Activity {
 
 					@Override
 					public void onClick(View v) {
-						Intent myIntent = new Intent(getApplicationContext(), FeedReaderActivity.class);
+						Intent myIntent = new Intent(getApplicationContext(), SocialEventReaderActivity.class);
                         startActivity(myIntent);
 					}
                 	
                 });
-                
+                SocialEvent r = new SocialEvent();
                 giveawaysButton = (ImageButton)findViewById(R.id.imageButtonGiveaways);
                 giveawaysButton.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
 						Intent myIntent = new Intent(getApplicationContext(), GiveawayActivity.class);
+                        startActivity(myIntent);
+					}
+                	
+                });
+                
+                releasesButton = (ImageButton)findViewById(R.id.imageButtonReleases);
+                releasesButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Intent myIntent = new Intent(getApplicationContext(), ReleaseActivity.class);
                         startActivity(myIntent);
 					}
                 	

@@ -1,18 +1,11 @@
 package com.lenovo.social;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.lenovo.social.EventsArrayAdapter.ViewHolder;
-
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GiveawayArrayAdapter extends ArrayAdapter<Giveaway> {

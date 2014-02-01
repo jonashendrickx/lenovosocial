@@ -7,7 +7,7 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/imageViewPicture"
+        android:id="@+id/imageViewTwitterPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/twitter_item" />
@@ -18,7 +18,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/textViewTwitterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+id/textViewName"
@@ -26,7 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" >
         </TextView>
         <TextView
-            android:id="@+id/textViewHashtags"
+            android:id="@+id/textViewTwitterHashtags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+id/textViewHashtags"
@@ -34,7 +34,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" >
         </TextView>
         <TextView
-            android:id="@+id/textViewTime"
+            android:id="@+id/textViewTwitterTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+id/textViewTime"

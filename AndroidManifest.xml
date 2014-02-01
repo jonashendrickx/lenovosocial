@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lenovo.social"
-    android:versionCode="6"
-    android:versionName="0.6" >
+    android:versionCode="8"
+    android:versionName="0.8" >
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.lenovo.social.FeedReaderActivity"
-            android:label="@string/app_name"
+            android:name="com.lenovo.social.SocialEventReaderActivity"
+            android:label="@string/social_events"
             android:parentActivityName="com.lenovo.social.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -37,12 +37,13 @@
         </activity>
         <activity
             android:name="com.lenovo.social.GiveawayActivity"
-            android:label="@string/title_activity_giveaway"
+            android:label="@string/giveaways"
             android:parentActivityName="com.lenovo.social.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lenovo.social.MainActivity" />
         </activity>
+        <activity android:name="com.lenovo.social.ReleaseActivity" android:label="@string/releases" android:parentActivityName="com.lenovo.social.MainActivity"></activity>
     </application>
 
 </manifest>
