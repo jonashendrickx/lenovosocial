@@ -1,20 +1,14 @@
-package com.lenovo.social;
+package com.lenovo.social.socialevent;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.ExecutionException;
 
 import com.lenovo.social.R;
-
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SocialEventAdapter extends BaseAdapter {
@@ -23,22 +17,9 @@ public class SocialEventAdapter extends BaseAdapter {
 
 	public SocialEventAdapter(Activity activity) {
 		this.activity = activity;
-		GoogleFeedReader reader1 = new GoogleFeedReader();
-		TwitterFeedReader reader2 = new TwitterFeedReader();
-		reader1.execute();
-		reader2.execute();
-
-		this.social_events = new ArrayList<SocialEvent>();
-		try {
-			this.social_events.addAll(reader1.get());
-			this.social_events.addAll(reader2.get());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		social_events = new ArrayList<SocialEvent>();
+		social_events.addAll(GoogleFeedReader.get());
+		social_events.addAll(TwitterFeedReader.get());
 		Collections.sort(social_events);
 	}
 

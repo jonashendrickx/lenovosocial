@@ -1,5 +1,8 @@
 package com.lenovo.social;
 
+import com.lenovo.social.socialevent.SocialEvent;
+import com.lenovo.social.socialevent.SocialEventReaderActivity;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
