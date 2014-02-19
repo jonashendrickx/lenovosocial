@@ -1,6 +1,8 @@
-package com.lenovo.social;
+package com.lenovo.social.giveaway;
 
 import java.util.ArrayList;
+
+import com.lenovo.social.R;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;

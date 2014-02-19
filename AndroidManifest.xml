@@ -36,14 +36,14 @@
         <activity android:name="com.lenovo.social.SettingsActivity" >
         </activity>
         <activity
-            android:name="com.lenovo.social.GiveawayActivity"
+            android:name="com.lenovo.social.giveaway.GiveawayActivity"
             android:label="@string/giveaways"
             android:parentActivityName="com.lenovo.social.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lenovo.social.MainActivity" />
         </activity>
-        <activity android:name="com.lenovo.social.ReleaseActivity" android:label="@string/releases" android:parentActivityName="com.lenovo.social.MainActivity"></activity>
+        <activity android:name="com.lenovo.social.release.ReleaseActivity" android:label="@string/releases" android:parentActivityName="com.lenovo.social.MainActivity"></activity>
     </application>
 
 </manifest>

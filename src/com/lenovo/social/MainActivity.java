@@ -1,5 +1,7 @@
 package com.lenovo.social;
 
+import com.lenovo.social.giveaway.GiveawayActivity;
+import com.lenovo.social.release.ReleaseActivity;
 import com.lenovo.social.socialevent.SocialEvent;
 import com.lenovo.social.socialevent.SocialEventReaderActivity;
 

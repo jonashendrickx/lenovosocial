@@ -1,4 +1,4 @@
-package com.lenovo.social;
+package com.lenovo.social.release;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

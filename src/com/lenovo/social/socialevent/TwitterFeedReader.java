@@ -27,6 +27,7 @@ public class TwitterFeedReader {
 			FeedReader reader = new FeedReader();
 			reader.execute(Server.TWITTER_FEED_URL);
 			JSONObject jsonResponse;
+			if (reader.get() != null) {
 			jsonResponse = new JSONObject(reader.get());
 			JSONArray jsonMainNode = jsonResponse.optJSONArray("twitter_event");
 			for (int i = 0; i < jsonMainNode.length(); i++) {
@@ -46,6 +47,10 @@ public class TwitterFeedReader {
 				event.setTime((GregorianCalendar) gregorianCalendar);
 				event.setHashTags(jsonChildNode.optString("hashtags"));
 				events.add(event);
+			}
+			}
+			else {
+				return new ArrayList<TwitterEvent>(0);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

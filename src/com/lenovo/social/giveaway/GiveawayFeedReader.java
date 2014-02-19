@@ -1,4 +1,4 @@
-package com.lenovo.social.socialevent;
+package com.lenovo.social.giveaway;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,55 +9,47 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.lenovo.social.Server;
 import com.lenovo.social.json.FeedReader;
-
 import android.annotation.SuppressLint;
 
 @SuppressLint("SimpleDateFormat")
-public class GoogleFeedReader {
-	public static ArrayList<GoogleEvent> get() {
-		ArrayList<GoogleEvent> events = new ArrayList<GoogleEvent>();
+public class GiveawayFeedReader {
+	public static ArrayList<Giveaway> get() {
+		ArrayList<Giveaway> list = new ArrayList<Giveaway>(0);
 		try {
 			FeedReader reader = new FeedReader();
-			reader.execute(Server.GOOGLE_FEED_URL);
+			reader.execute(Server.GIVEAWAY_FEED_URL);
 			JSONObject jsonResponse;
-			if (reader.get() != null){
+			if (reader.get() != null) {
 				jsonResponse = new JSONObject(reader.get());
-				JSONArray jsonMainNode = jsonResponse.optJSONArray("google_event");
+				JSONArray jsonMainNode = jsonResponse.optJSONArray("giveaway");
 				for (int i = 0; i < jsonMainNode.length(); i++) {
 					JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-					GoogleEvent event = new GoogleEvent();
-					event.setName(jsonChildNode.optString("name"));
+					Giveaway giveaway = new Giveaway();
+					giveaway.setName(jsonChildNode.optString("name"));
 					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 					Date date = null;
 					try {
-						date = dateFormat.parse(jsonChildNode.optString("date"));
+						date = dateFormat.parse(jsonChildNode.optString("exp_date"));
 					} catch (ParseException e) {
 						e.printStackTrace();
 					}
 					Calendar gregorianCalendar = Calendar.getInstance();
 					gregorianCalendar.setTime(date);
-					event.setTime((GregorianCalendar) gregorianCalendar);
-
-					final String event_url = jsonChildNode.optString("event_url");
-					if (!event_url.equals("null")) {
-						event.setEventURL(event_url);
+					giveaway.setExpirationDate((GregorianCalendar) gregorianCalendar);
+					final String url = jsonChildNode.optString("url");
+					if (!url.equals("null")) {
+						giveaway.setURL(url);
 					}
-					final String recording_url = jsonChildNode.optString("recording_url");
-					if (!event_url.equals("null")) {
-						event.setRecordingURL(recording_url);
-					}
-					events.add(event);
+					list.add(giveaway);
 				}
 			} else {
-				return new ArrayList<GoogleEvent>(0);
+				return new ArrayList<Giveaway>(0);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -66,6 +58,7 @@ public class GoogleFeedReader {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-		return events;
+		return list;
 	}
+
 }

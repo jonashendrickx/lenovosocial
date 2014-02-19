@@ -1,4 +1,4 @@
-package com.lenovo.social;
+package com.lenovo.social.giveaway;
 
 import java.util.GregorianCalendar;
 

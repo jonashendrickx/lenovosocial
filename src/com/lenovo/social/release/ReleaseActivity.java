@@ -1,8 +1,12 @@
-package com.lenovo.social;
+package com.lenovo.social.release;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ExecutionException;
+
+import com.lenovo.social.R;
+import com.lenovo.social.R.id;
+import com.lenovo.social.R.layout;
 
 import android.os.Bundle;
 import android.app.ExpandableListActivity;

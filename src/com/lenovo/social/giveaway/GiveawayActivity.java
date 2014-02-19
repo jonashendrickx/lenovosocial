@@ -1,9 +1,6 @@
-package com.lenovo.social;
+package com.lenovo.social.giveaway;
 
-import java.util.ArrayList;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-
+import com.lenovo.social.R;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -27,18 +24,8 @@ public class GiveawayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_giveaway);
 		setupActionBar();
-		GiveawayFeedReader reader = new GiveawayFeedReader();
-		try {
-			reader.execute();
-		} catch (IllegalStateException exception) {}
-		ArrayList<Giveaway> giveaways = null;
-		try {
-			giveaways = reader.get();
-		} catch (CancellationException e) {}
-		catch (InterruptedException e) {}
-		catch (ExecutionException e) {}
 		listviewGiveaways = (ListView)findViewById(R.id.listViewGiveaways);
-		GiveawayArrayAdapter adapter = new GiveawayArrayAdapter(this, R.id.listViewGiveaways, giveaways);
+		GiveawayArrayAdapter adapter = new GiveawayArrayAdapter(this, R.id.listViewGiveaways, GiveawayFeedReader.get());
 		listviewGiveaways.setAdapter(adapter);
 		listviewGiveaways.setOnItemClickListener(new OnItemClickListener() {
 			@Override

@@ -1,4 +1,4 @@
-package com.lenovo.social;
+package com.lenovo.social.release;
 
 public class Product {
 		private String name;
