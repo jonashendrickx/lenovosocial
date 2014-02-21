@@ -1,22 +1,17 @@
 package com.lenovo.social.release;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.concurrent.ExecutionException;
 
 import com.lenovo.social.R;
-import com.lenovo.social.R.id;
-import com.lenovo.social.R.layout;
 
 import android.os.Bundle;
 import android.app.ExpandableListActivity;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ReleaseActivity extends ExpandableListActivity {

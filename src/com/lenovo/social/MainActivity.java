@@ -1,7 +1,7 @@
 package com.lenovo.social;
 
 import com.lenovo.social.giveaway.GiveawayActivity;
-import com.lenovo.social.release.ReleaseActivity;
+import com.lenovo.social.quicknews.QuickNewsActivity;
 import com.lenovo.social.socialevent.SocialEvent;
 import com.lenovo.social.socialevent.SocialEventReaderActivity;
 
@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
 					}
                 	
                 });
-                SocialEvent r = new SocialEvent();
                 giveawaysButton = (ImageButton)findViewById(R.id.imageButtonGiveaways);
                 giveawaysButton.setOnClickListener(new OnClickListener() {
 
@@ -52,7 +51,8 @@ public class MainActivity extends Activity {
 
 					@Override
 					public void onClick(View v) {
-						Intent myIntent = new Intent(getApplicationContext(), ReleaseActivity.class);
+						//Intent myIntent = new Intent(getApplicationContext(), ReleaseActivity.class);
+						Intent myIntent = new Intent(getApplicationContext(), QuickNewsActivity.class);
                         startActivity(myIntent);
 					}
                 	

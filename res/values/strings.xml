@@ -13,4 +13,10 @@
     <string name="releases">Releases</string>
     <string name="release_date">Release date:</string>
     <string name="released">Released</string>
+    <string name="title_activity_photos">Photos</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_video">VideoActivity</string>
+    <string name="title_activity_news_releases">News Releases</string>
+    <string name="title_activity_quick_news">QuickNewsActivity</string>
+
 </resources>

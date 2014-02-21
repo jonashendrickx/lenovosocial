@@ -1,7 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="corner_radius_half">4dp</dimen>
     <dimen name="corner_radius_full">8dp</dimen>
-	<dimen name="margin_full">16dp</dimen>
-	<dimen name="padding_half">8dp</dimen>
-	<dimen name="padding_full">16dp</dimen>
+    <dimen name="margin_full">16dp</dimen>
+    <dimen name="padding_half">8dp</dimen>
+    <dimen name="padding_full">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
 </resources>
